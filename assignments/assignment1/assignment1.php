@@ -28,9 +28,9 @@
         <div class="col-md-4">
             <label for="state" class="form-label">State</label>
                 <select id="state" class="form-select">
-                  <option selected>Michigan</option>
-                  <option value="ny">New York</option>
                   <option value="ca">California</option>
+                  <option value="ny">New York</option>
+                  <option value="mi" selected>Michigan</option>
                   <option value="tx">Texas</option>
                   <option value="il">Illinois</option>
                 </select>
