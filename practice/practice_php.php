@@ -1,8 +1,19 @@
 <?php
-$arr = [1,2,3,4,5];
+$string = "This is a string."." This is a concatenated string";
 
-print_r($arr);
+echo $string."<br>";
+$string = "You can also ";
+$string .= "add to strings using the ";
+$string .= "dot-equals (.=) operator";
+echo $string."<br>";
 
+$myString = "I say, nay, nay, and thrice nay!";
+echo substr_count( $myString, "nay" )."<br>"; // DISPLAYS '3'
+
+$string = "this is a string";
+echo strtoupper($string)."<br>";
+echo strtolower($string)."<br>";
+echo ucwords($string)."<br>";
 ?>
 
 
