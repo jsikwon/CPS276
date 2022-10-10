@@ -5,7 +5,7 @@
                 return "You must enter a string and two numbers<br>";
             }
             elseif ($operator == '/' && $s_num == 0) {
-                return "Canot divide by zero<br>";
+                return "Cannot divide by zero<br>";
             }
                 switch ($operator) {
                     case "+":
