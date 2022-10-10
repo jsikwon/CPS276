@@ -1,19 +1,15 @@
 <?php
-
 function myTable(){
   for ($i = 1; $i < 16; $i++){
     echo "<tr>";
     for ($j = 1; $j < 6; $j++){
         echo "<td>"."Row {$i} "."Cell {$j}"."</td>";
-  }
-  if($i%5==0) {
+      }
+    if($i%5==0) {
     echo "</tr>";
+    }
   }
-
 }
-
-}
-
 ?>
 
 <!doctype html>
