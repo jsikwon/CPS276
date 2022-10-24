@@ -2,7 +2,7 @@
 $output = "";
  class AddNamesProc {
 
-   public function addName() { if(isset($_POST["submitButton"]))
+   public function addClearNames(){ if(isset($_POST["submitButton"]))
         $fullName = $_POST["fullName"]
         foreach($fullName as $fullName) {
             $output .= "$fullName \n"; 
@@ -10,7 +10,7 @@ $output = "";
             return $output;
     }
 
-    public function addClearNames() { if(isset($_POST["clearButton"]))
+    public function  { if(isset($_POST["clearButton"]))
                 $output = $_POST["clearButton"];    
             }    
                 return $output;
