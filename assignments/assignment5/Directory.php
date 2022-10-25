@@ -1,7 +1,7 @@
 <?php
 
     $msg = "";
-class createDirectory() {
+class createDirectory {
     public function addFile() { 
         if(isset($_POST["submitButton"]))
         
@@ -15,7 +15,9 @@ class createDirectory() {
                 fclose($file);
 
         if($success) {
-            $msg = "File and directory where created\n <p><a href="https://russet-v8.wccnet.edu/~jwon1/CPS276/assignments/assignment5/directories/"$folderName"/readme.txt">Path where file is located</a></p>";
+            $link = <p><a href="https://russet-v8.wccnet.edu/~jwon1/CPS276/assignments/assignment5/directories/"$folderName"/readme.txt">Path where file is located</a></p>;
+            $msg = "File and directory where created\n".$link
+             
 
         } else {
             $msg = "A directory already exists with that name";
