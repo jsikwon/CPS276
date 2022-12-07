@@ -1,5 +1,5 @@
 <?php
-$msg = "Display Notes";
+//$msg = "Display Notes";
 
 require_once 'Classes/Date_time.php';
 $dt = new Date_time();

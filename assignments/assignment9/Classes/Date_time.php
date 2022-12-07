@@ -43,14 +43,16 @@ HTML;
 		$output .= "<table class='table table-bordered table-striped'><thead><tr>";
 		$output .= "<th>Date and Time</th><th>Note</th><tbody>";
 		foreach ($records as $row){
-			$output .= "<tr><td><input type='text' class='form-control' name='fname^^{$row['id']}' value='{$row['first_name']}'></td>";
+			$output .= "<tr><td><name='date_time^^{$row['id']}' value='{$row['date_time']}'></td>";
 
-			$output .= "<td><input type='text' class='form-control' name='lname^^{$row['id']}' value='{$row['last_name']}'></td>";
+			$output .= "<td><name='note_content^^{$row['id']}' value='{$row['note_content']}'></td>";
 		}
 		
-		$output .= "</tbody></table></form>";
+		$output .= "</tbody></table>";
 		return $output;
 	}
 }
+
+
 
 ?>
