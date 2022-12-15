@@ -79,12 +79,12 @@ function displayUsernamePassword(){
         <th>Password</th>
         <th>Status</th>
         </tr>
-    </thead><tbody><tr><td>Scott Shaper</td>
-        <td>sshaper@admin.com</td>
+    </thead><tbody><tr><td>Jun Won</td>
+        <td>jwon1@admin.com</td>
         <td>$2y$10$PQ2ywUwwm8eb.kkKcxuHuu0rIqY2eP0eew/9h7fYvSuh1z2tSJfOK</td>
         <td>admin</td>
         <td><input type='checkbox' name='chkbx[]' value='13' /></td></tr><tr><td>Scott Shaper</td>
-        <td>sshaper@staff.com</td>
+        <td>jwon1@staff.com</td>
         <td>$2y$10$y//i31alaXhEEpbl/0ynS.KQIsoZvlXQOJ57oCy1uFI.OPxSbL38m</td>
         <td>staff</td>
         <td><input type='checkbox' name='chkbx[]' value='14' /></td></tr></tbody></table></form>	</body>

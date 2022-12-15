@@ -18,9 +18,8 @@ while($i <= $outer) {
 }
 
     $table .= "</table>";
-}
 
-
+?>
 
 
 <!doctype html>

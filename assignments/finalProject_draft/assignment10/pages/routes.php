@@ -1,6 +1,6 @@
 <?php
 
-$path = "index.php?pages=welcome.php";
+$path = "index.php?page=welcome";
 
 /**Add function for if admin then output admin nav and else output staff nav */
 
@@ -31,27 +31,17 @@ HTML;
 
 
 if(isset($_GET)){
-    if($_GET['page'] === "addContact"){
+    if($_GET['pages'] === "addContact"){
         require_once('addContact.php');
         $result = init();
     }
     
-    else if($_GET['page'] === "deleteContacts"){
+    else if($_GET['pages'] === "deleteContacts"){
         require_once('deleteContacts.php');
         $result = init();
     }
 
-    else if($_GET['page'] === "addAdmin"){
-        require_once('addAdmin.php');
-        $result = init();
-    }
-
-    else if($_GET['page'] === "deleteAdmins"){
-        require_once('deleteAdmins.php');
-        $result = init();
-    }
-    
-    else if($_GET['page'] === "logout"){
+    else if($_GET['pages'] === "logout"){
         require_once('assignment10/logout.php');
         $result = init();
 
@@ -66,7 +56,7 @@ else {
     header('location: '.$path);
 }
   
-/**RETURNS THE PAGE BACK TO LOGIN*/
+/**RETURNS THE PAGE BACK TO LOGIN
 class Security {
   
     public function security(){
@@ -76,6 +66,6 @@ class Security {
      
             }
         }
-    }
+    }*/
 
 ?>

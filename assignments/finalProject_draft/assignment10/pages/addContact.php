@@ -144,8 +144,8 @@ function addData($post){
         [':phone',$post['phone'],'str'],
         [':email',$post['email'],'str'],
         [':dob',$post['dob'],'str'],
-        [':contact',$post['contact'],'str'],
-        [':age',$post['age'],'str']
+        [':contact',$post[$contact],'str'],
+        [':age',$post[$age],'str']
       ];
 
       $result = $pdo->otherBinded($sql, $bindings);
@@ -223,7 +223,7 @@ $form = <<<HTML
     </div>
 
     <div>
-      <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
     </div>
   </form>
 HTML;

@@ -32,17 +32,11 @@ class Validation{
 		return $this->setError($match);
 	}
 
-	private function city($value){
-		$match = preg_match('[a-zA-Z]+(\\,)?', $value);
-		return $this->setError($match);
-	}
-
-
-    private function state($value){
+    private function city($value){
 		$match = preg_match('/[A-Z]{2}/', $value);
 		return $this->setError($match);
 	}
-
+	
     private function phone($value){
 		$match = preg_match('/\d{3}\.\d{3}.\d{4}/', $value);
 		return $this->setError($match);

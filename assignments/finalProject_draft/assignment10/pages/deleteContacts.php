@@ -9,7 +9,7 @@ function init(){
             foreach($_POST['chkbx'] as $id){
                 $pdo = new PdoMethods();
 
-                $sql = "DELETE FROM contacts WHERE id=:id";
+                $sql = "DELETE FROM contactMod WHERE id=:id";
                 
                 $bindings = [
                     [':id', $id, 'int'],
