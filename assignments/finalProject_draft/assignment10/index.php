@@ -3,6 +3,8 @@
 /*I REQUIRE IN THE ROUTES PAGE WHICH IS ACTUALLY DOES THE WORK FOR GETTING THE PAGES.*/ 
 require_once 'pages/routes.php';
 
+$result = init();
+
 ?>
 
 <!DOCTYPE html>

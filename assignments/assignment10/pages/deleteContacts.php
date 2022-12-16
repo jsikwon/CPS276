@@ -40,7 +40,8 @@ function init(){
         return [$output,""];
     }
     else {
-        $output = "<form method='post' action='index.php?page=deleteContacts'>";
+        $output = "<h1>Delete Contact(s)</h1><br>";
+        $output .= "<form method='post' action='index.php?page=deleteContacts'>";
         $output .= "<input type='submit' class='btn btn-danger' name='delete' value='Delete'/><br><br><table class='table table-striped table-bordered'>
     <thead>
         <tr>
@@ -65,7 +66,7 @@ function init(){
         <td>{$row['phone']}</td>
         <td>{$row['email']}</td>
         <td>{$row['dob']}</td>
-        <td>{$row['contact']}</td>
+        <td>{$row['contacts']}</td>
         <td>{$row['age']}</td>
         <td><input type='checkbox' name='chkbx[]' value='{$row['id']}' /></td></tr>";
     }

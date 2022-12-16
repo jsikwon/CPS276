@@ -3,25 +3,29 @@ require_once 'routes.php';
 $page = new Page();
 echo $page->head("Encrypted Login - Login Page");
 
-//echo password_hash('password', PASSWORD_DEFAULT);
+$error = '';
 
+if(isset($_POST['submit'])){
+  /* IF THE USERNAME AND PASSWORD MATCH THEN REDIRECT TO */
+  if($_POST['username'] === "admin" && $_POST['password'] === "password"){
+    
+    session_start();
+    $_SESSION['access'] = "accessGranted";
 
-$output = "";
+    /* HERE I STORE A FIRST NAME IN THE SESSION AS WELL AND WILL DISPLAY IT ON EVERY PAGE*/
+    $_SESSION['fname'] = $_POST['fname'];
 
-if(isset($_POST['login'])){
-  require_once 'pages/login.php';
-  $admin = new Admin();
-  $output = $admin->login($_POST);
-  echo $output;
-  if($output === 'success'){
-   
-    header('Location: home.php');
+    //session_regenerate_id();
+    header('location:index.php');
   }
-
-
+  else {
+    $error = "Incorrect username or password";
+  }
 }
 
+
 ?>
+
 <!doctype html>
 <html lang="en">
   <head>

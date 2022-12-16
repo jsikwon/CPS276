@@ -89,10 +89,10 @@ $elementsArr = [
         "errorMessage"=>"<span style='color: red; margin-left: 15px;'>Dob cannot be blank, must be a valid date and be formatted as mm/dd/yyyy</span>",
         "errorOutput"=>"",
         "type"=>"text",
-            "value"=>"Anywhere",
+            "value"=>"12/25/1991",
             "regex"=>"dob"
     ],
-    "contact"=>[
+    "contacts"=>[
         "action"=>"notRequired",
         "type"=>"checkbox",
         "status"=>["Newsletter"=>"", "Email Updates"=>"", "Text Updates"=>""]
@@ -102,7 +102,7 @@ $elementsArr = [
         "errorOutput"=>"",
         "type"=>"radio",
         "action"=>"required",
-            "value"=>["10-18"=>"", "19-30"=>"", "30-50"=>"", "50+"=>""]
+            "value"=>["10-18"=>"", "19-30"=>"", "30-50"=>"", "51+"=>""]
   ]
 ];
 
@@ -116,35 +116,35 @@ function addData($post){
 
       $pdo = new PdoMethods();
 
-      $sql = "INSERT INTO contacts (name, address, city, state, phone, email, dob, contact, age) VALUES (:name, :address, :city, :state, :phone, :email, :dob, :contact, :age)";
+      $sql = "INSERT INTO contacts (name, address, city, state, phone, email, dob, contacts, age) VALUES (:name, :address, :city, :state, :phone, :email, :dob, :contacts, :age)";
 
       /* THIS TAKE THE ARRAY OF CHECK BOXES AND PUT THE VALUES INTO A STRING SEPERATED BY COMMAS  */
-      if(isset($_POST['contact'])){
-        $contact = "";
-        foreach($post['contact'] as $v){
-          $contact .= $v.",";
+      if(isset($_POST['contacts'])){
+        $contacts = "";
+        foreach($post['contacts'] as $v){
+          $contacts .= $v.",";
         }
         /* REMOVE THE LAST COMMA FROM THE CONTACTS */
-        $contact = substr($contact, 0, -1);
+        $contacts = substr($contacts, 0, -1);
       }
 
-      if(isset($_POST['contact'])){
-        $contact = $_POST['contact'];
+      if(isset($_POST['contacts'])){
+        $contacts = $_POST['contacts'];
       }
       else {
-        $contact = "";
+        $contacts = "";
       }
 
 
       $bindings = [
         [':name',$post['name'],'str'],
-        [':address',$post['adress'],'str'],
+        [':address',$post['address'],'str'],
         [':city',$post['city'],'str'],
         [':state',$post['state'],'str'],
         [':phone',$post['phone'],'str'],
         [':email',$post['email'],'str'],
         [':dob',$post['dob'],'str'],
-        [':contact',$post['contact'],'str'],
+        [':contacts',$contacts,'str'],
         [':age',$post['age'],'str']
       ];
 
@@ -168,17 +168,23 @@ $options = $stickyForm->createOptions($elementsArr['state']);
 
 /* THIS IS A HEREDOC STRING WHICH CREATES THE FORM AND ADD THE APPROPRIATE VALUES AND ERROR MESSAGES */
 $form = <<<HTML
+<h1>Add Contact</h1>
     <form method="post" action="index.php?page=addContact">
     <div class="form-group">
       <label for="name">Name (letters only){$elementsArr['name']['errorOutput']}</label>
       <input type="text" class="form-control" id="name" name="name" value="{$elementsArr['name']['value']}" >
     </div>
+
     <div class="form-group">
-      <label for="phone">Phone (format 999.999.9999) {$elementsArr['phone']['errorOutput']}</label>
-      <input type="text" class="form-control" id="phone" name="phone" value="{$elementsArr['phone']['value']}" >
+      <label for="address">Address (just number and street){$elementsArr['address']['errorOutput']}</label>
+      <input type="text" class="form-control" id="address" name="address" value="{$elementsArr['address']['value']}" >
     </div>
 
-            
+    <div class="form-group">
+      <label for="city">City {$elementsArr['city']['errorOutput']}</label>
+      <input type="text" class="form-control" id="city" name="city" value="{$elementsArr['city']['value']}" >
+    </div>
+
     <div class="form-group">
       <label for="state">State</label>
       <select class="form-control" id="state" name="state">
@@ -186,22 +192,37 @@ $form = <<<HTML
       </select>
     </div>
 
-    <p>Please check all contact options you'd like (optional):{$elementsArr['contact']['errorOutput']}</p>
+    <div class="form-group">
+      <label for="phone">Phone (format 999.999.9999) {$elementsArr['phone']['errorOutput']}</label>
+      <input type="text" class="form-control" id="phone" name="phone" value="{$elementsArr['phone']['value']}" >
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email {$elementsArr['email']['errorOutput']}</label>
+      <input type="text" class="form-control" id="email" name="email" value="{$elementsArr['email']['value']}" >
+    </div>
+    
+    <div class="form-group">
+      <label for="dob">Date of Birth {$elementsArr['dob']['errorOutput']}</label>
+      <input type="text" class="form-control" id="dob" name="dob" value="{$elementsArr['dob']['value']}" >
+    </div>
+
+    <p>Please check all contact options you'd like (optional):</p>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" name="contact[]" id="contact1" value="Newsletter" {$elementsArr['contact']['status']['newsletter']}>
-      <label class="form-check-label" for="contact1">Newsletter</label>
+      <input class="form-check-input" type="checkbox" name="contacts[]" id="contacts1" value="Newsletter">
+      <label class="form-check-label" for="contacts1">Newsletter</label>
     </div>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" name="contact[]" id="contact2" value="Email Updates" {$elementsArr['contact']['status']['emailUpdate']}>
-      <label class="form-check-label" for="contact2">Email Updates</label>
+      <input class="form-check-input" type="checkbox" name="contacts[]" id="contacts2" value="Email Updates">
+      <label class="form-check-label" for="contacts2">Email Updates</label>
     </div>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" name="contact[]" id="contact3" value="Text Updates" {$elementsArr['contact']['status']['textUpdate']}>
-      <label class="form-check-label" for="contact3">Text Updates</label>
+      <input class="form-check-input" type="checkbox" name="contacts[]" id="contacts3" value="Text Updates">
+      <label class="form-check-label" for="contacts3">Text Updates</label>
     </div>
         
 
-    <p>Please select an age range (you must select one):</p>
+    <p>Please select an age range (you must select one): {$elementsArr['age']['errorOutput']}</p>
     <div class="form-check form-check-inline">
       <input class="form-check-input" type="radio" name="age" id="age1" value="10-18"  {$elementsArr['age']['value']['10-18']}>
       <label class="form-check-label" for="age1">10-18</label>

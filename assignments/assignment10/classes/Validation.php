@@ -33,7 +33,7 @@ class Validation{
 	}
 
 	private function city($value){
-		$match = preg_match('[a-zA-Z]+(\\,)?', $value);
+		$match = preg_match('/[a-zA-Z]?/', $value);
 		return $this->setError($match);
 	}
 
@@ -54,9 +54,11 @@ class Validation{
 	}
 
     private function dob($value){
-		$match = preg_match('/(0[1-9]|1[012])[-/](0[1-9]|[12][0-9]|3[01])[-/](19|20)\d\d/', $value);
+		$match = preg_match('/(0?\d|1[012])\/([012]?\d|3[01])\/\d{4}/', $value);
 		return $this->setError($match);
 	}
+	
+	//(0[1-9]|1[012])[-/](0[1-9]|[12][0-9]|3[01])[-/](19|20)\d\d
 	
 	
 	private function setError($match){
